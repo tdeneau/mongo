@@ -435,14 +435,22 @@ std::size_t CursorManager::timeoutCursors(int millisSinceLastCall) {
 }
 
 void CursorManager::registerExecutor(PlanExecutor* exec) {
+    if (false) {
+	    return;
+    } else {
     stdx::lock_guard<SimpleMutex> lk(_mutex);
     const std::pair<ExecSet::iterator, bool> result = _nonCachedExecutors.insert(exec);
     invariant(result.second);  // make sure this was inserted
+	}
 }
 
 void CursorManager::deregisterExecutor(PlanExecutor* exec) {
+    if (false) {
+	    return;
+    } else {
     stdx::lock_guard<SimpleMutex> lk(_mutex);
     _nonCachedExecutors.erase(exec);
+	}
 }
 
 ClientCursor* CursorManager::find(CursorId id, bool pin) {
